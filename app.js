@@ -11,6 +11,12 @@ const indexRouter = require('./routes/index');
 const booksRouter = require('./routes/books');
 
 //connect BD MongoDB
+mongoose.connect('mongodb://localhost/testExpressDB')
+  .then(() => console.log('Connected to MongoDB...'))
+  .catch(err => console.error('Could not connect to MongoDB...'));
+
+
+/*
 mongoose
   .connect('mongodb+srv://mbaye:Passer12345@testexpressbd.84jwh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -22,7 +28,7 @@ mongoose
       console.log('Server has started!')
     })
   })
-
+*/
 const app = express();
 
 // view engine setup

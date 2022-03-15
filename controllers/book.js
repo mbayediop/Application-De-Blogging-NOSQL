@@ -15,18 +15,12 @@ function createBook(req, res) {
   if (!req.body.title || !req.body.author || !req.body.resume) {
     res.status(400).send('Vous devez remplir les données')
   }
-
-  const title = req.body.title
-  const author= req.body.author
-  const resume= req.body.resume
-  
-
-/*  const book = {
+  const book = {
     title: req.body.title,
     author: req.body.author,
     resume: req.body.resume,
   }
-  */
+  
   const newBook = new Book(title, author, resume)
   newBook.save(function (err) {
     if (err) {
