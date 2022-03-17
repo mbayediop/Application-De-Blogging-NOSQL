@@ -11,6 +11,7 @@ function getAllBooks(req, res) {
 }
 
 //ajouter un book
+
 function createBook(req, res) {
   if (!req.body.title || !req.body.author || !req.body.resume) {
     res.status(400).send('Vous devez remplir les données')
@@ -30,4 +31,19 @@ function createBook(req, res) {
   })
 }
 
-module.exports = { getAllBooks, createBook }
+//Details
+function getBookDetails(req, res) {
+  const id = req.params.id
+  Book.findByPk(id)
+  .then(function(data) {
+      res.render("book", { title: data.title,
+      book:data })
+  })
+  //en cas d'erreur
+  .catch(function (err) {
+      res.status(500).send( { message: err.message})
+  })
+}
+
+
+module.exports = { getAllBooks, createBook, getBookDetails }
